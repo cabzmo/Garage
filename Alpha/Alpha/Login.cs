@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Alpha
 {
-    public partial class Login : Form
+    public partial class formLogin : Form
     {
-        public Login()
+        public formLogin()
         {
             InitializeComponent();
         }
@@ -90,7 +90,7 @@ namespace Alpha
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // Login
+            // formLogin
             // 
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.btnClose);
@@ -100,7 +100,8 @@ namespace Alpha
             this.Controls.Add(this.lblPword);
             this.Controls.Add(this.lblUname);
             this.Controls.Add(this.lblTitle);
-            this.Name = "Login";
+            this.Name = "formLogin";
+            this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -128,9 +129,19 @@ namespace Alpha
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if ((txtUname.Text == "cab") && (txtPword.Text == "123"))
-                MessageBox.Show("Welcome", "Login successful", MessageBoxButtons.OK);
+            {
+                MessageBox.Show("Welcome " + txtUname.Text, "Login successful", MessageBoxButtons.OK);
+                formAdmin next = new formAdmin(txtUname.Text);
+                txtUname.Text = "";
+                txtPword.Text = "";
+                this.Visible = false;
+                next.ShowDialog();
+                this.Visible = true;
+            }
             else
+            {
                 MessageBox.Show("The username or password you entered is incorrect\nPlease try again", "Login unsuccessful", MessageBoxButtons.OK);
+            }
         }
     }
 }
