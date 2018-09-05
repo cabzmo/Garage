@@ -28,24 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtb1 = new System.Windows.Forms.RichTextBox();
+            this.btnSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // rtb1
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(800, 450);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.rtb1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rtb1.Location = new System.Drawing.Point(-200, 0);
+            this.rtb1.Name = "rtb1";
+            this.rtb1.Size = new System.Drawing.Size(1000, 450);
+            this.rtb1.TabIndex = 0;
+            this.rtb1.Text = "";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(358, 415);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 1;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // Repairs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.richTextBox1);
+            this.ControlBox = false;
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.rtb1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Repairs";
             this.Text = "Repairs";
             this.Load += new System.EventHandler(this.Repairs_Load);
@@ -55,6 +70,7 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtb1;
+        private System.Windows.Forms.Button btnSave;
     }
 }
