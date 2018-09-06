@@ -70,6 +70,7 @@
             this.Name = "formAdmin";
             this.Text = "User Admin";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formAdmin_FormClosing);
             this.Load += new System.EventHandler(this.formAdmin_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
