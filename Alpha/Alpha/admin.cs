@@ -13,7 +13,7 @@ namespace Alpha
     public partial class formAdmin : Form
     {
         string uname;
-        bool AllSaved = false;
+        bool AllSaved = true;
 
         private void OpenRepair()
         {
@@ -26,11 +26,27 @@ namespace Alpha
                 }
             }
 
-            Repairs repairs = new Repairs();
+            Repairs repairs = new Repairs(this);
             repairs.MdiParent = this;
             repairs.WindowState = FormWindowState.Maximized;
             repairs.Show();
             menuRepairs.Font = new Font(menuRepairs.Font, FontStyle.Bold);
+        }
+
+        public void resetForm()
+        {
+            menuRepairs.Font = new Font(menuRepairs.Font, FontStyle.Regular);
+            AllSaved = true;
+        }
+
+        public void allSavedFalse()
+        {
+            AllSaved = false;
+        }
+
+        public void allSavedTrue()
+        {
+            AllSaved = true;
         }
 
         public formAdmin(string para)
@@ -60,6 +76,7 @@ namespace Alpha
                     {   
                         // maximize it
                         form.WindowState = FormWindowState.Maximized;
+                        menuRepairs.Font = new Font(menuRepairs.Font, FontStyle.Bold);
                         return;
                     }
                     
@@ -67,6 +84,7 @@ namespace Alpha
                     else if (form.WindowState == FormWindowState.Maximized)
                     {   // minimize it
                         form.WindowState = FormWindowState.Minimized;
+                        menuRepairs.Font = new Font(menuRepairs.Font, FontStyle.Regular);
                         return;
                     }
 
@@ -77,16 +95,11 @@ namespace Alpha
 
         }
 
-        void formB_ButtonWasClicked()
-        {
-            AllSaved = true;
-        }
-
         private void formAdmin_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (AllSaved == true)
             {
-
+                return;
             }
             else
             {
@@ -99,8 +112,12 @@ namespace Alpha
                     // user clicked no
                     foreach (Form form in Application.OpenForms)
                     {
-                        form.WindowState = FormWindowState.Maximized;
-                        return;
+                        if (form.GetType() != typeof(formAdmin))
+                        {
+                            form.WindowState = FormWindowState.Maximized;
+                            e.Cancel = true;
+                            AllSaved = false;
+                        }
                     }
                 }
             }

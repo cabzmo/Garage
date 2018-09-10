@@ -12,9 +12,12 @@ namespace Alpha
 {
     public partial class Repairs : Form
     {
-        public Repairs()
+        private formAdmin _formAdmin;
+
+        public Repairs(formAdmin Admin)
         {
             InitializeComponent();
+            _formAdmin = Admin;
         }
 
         private void Repairs_Load(object sender, EventArgs e)
@@ -65,7 +68,8 @@ namespace Alpha
             try
             {
                 System.IO.File.WriteAllText(path, rtb1.Text);
-                btnSave.Font = new Font(btnSave.Font, ~FontStyle.Bold);
+                btnSave.Font = new Font(btnSave.Font, FontStyle.Regular);
+                _formAdmin.resetForm();
             }
             catch (Exception)
             {
@@ -75,6 +79,22 @@ namespace Alpha
             }
 
             WindowState = FormWindowState.Minimized;
+        }
+
+        private void rtb1_TextChanged(object sender, EventArgs e)
+        {
+            if (System.IO.File.ReadAllText(@"repairs.txt").ToString() == rtb1.Text)
+            {
+                btnSave.Font = new Font(btnSave.Font, FontStyle.Regular);
+                _formAdmin.allSavedTrue();
+            }
+            else
+            {
+                btnSave.Font = new Font(btnSave.Font, FontStyle.Bold);
+                _formAdmin.allSavedFalse();
+            }
+
+            
         }
     }
 }
